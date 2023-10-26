@@ -1,0 +1,57 @@
+<!-- <form method="post" action="/users" accept-charset="UTF-8">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <label for="username">User Name:</label>
+  <input type="text" id="username" name="user[username]">
+  <div><br>
+  </div>
+  <label for="email">Email:</label>
+  <input type="email" name="user[email]" id="email">
+  <div><br>
+  </div>
+  <label for="password">Password:</label>
+  <input type="password" name="user[password]" id="password">
+  <div><br>
+  </div>
+  <input type="submit" value="Create User">
+</form>
+-->
+<!-- >
+<%= form_tag("/users", method: "post") do %>
+  <%= label_tag(:username, "User Name:")%>
+  <%= text_field_tag(:username)%>
+  <div></div>
+  <%= label_tag(:email, "Email:")%>
+  <%= email_field_tag(:email)%>
+  <div></div>
+  <%= label_tag(:password, "password:")%>
+  <%= password_field_tag(:password)%>
+  <div></div>
+  <%= submit_tag("submit") %>
+<%end%>
+-->
+<h1>Create your new account!</h1>
+<%= form_with model: @user do |f| %>
+  <% if @user.errors.any? %>
+    <div class="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.label :username, "username:" %>
+  <%= f.text_field :username, value: "New User" %>
+  <div><br>
+  </div>
+  <%= f.label :email, "email" %>
+  <%= f.email_field :email, placeholder: "example@example.com" %>
+  <div><br>
+  </div>
+  <%= f.label :password, "password" %>
+  <%= f.password_field :password %>
+  <br>
+  <br>
+  <%= f.submit %>
+<% end %>
